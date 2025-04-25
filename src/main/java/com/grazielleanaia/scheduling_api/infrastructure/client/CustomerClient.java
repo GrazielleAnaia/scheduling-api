@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface CustomerClient {
 
-    @GetMapping
+    @GetMapping("/customer")
     CustomerDTO findCustomerByEmail(@RequestParam("email") String email,
                                     @RequestHeader("Authorization") String token);
 
