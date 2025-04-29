@@ -29,6 +29,7 @@ public class TaskController {
         return ResponseEntity.ok(taskService.findTaskByEmail(token));
     }
 
+
     @GetMapping("/events")
     public ResponseEntity<List<TaskDTO>> findTaskByPeriod(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                                           LocalDateTime initialDate,

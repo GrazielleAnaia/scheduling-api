@@ -17,10 +17,10 @@ import java.util.List;
 @RequiredArgsConstructor
 
 public class TaskService {
-
     private final TaskRepository taskRepository;
     private final TaskConverter taskConverter;
     private final JwtUtil jwtUtil;
+
 
     public TaskDTO createTask(TaskDTO taskDTO, String token) {
         String email = jwtUtil.extractUsername(token.substring(7));
@@ -49,6 +49,8 @@ public class TaskService {
         List<TaskEntity> entityList = taskRepository.findByEventDateBetween(initialDate, finalDate);
         return taskConverter.toListTaskDTO(entityList);
     }
+
+
 
 
 }
