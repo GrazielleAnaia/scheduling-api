@@ -2,5 +2,5 @@ package com.grazielleanaia.scheduling_api.infrastructure.enums;
 
 public enum NotificationStatusEnum {
 
-    PENDENT, NOTIFIED, CANCELLED
+    PENDENT, MODIFIED, NOTIFIED, CANCELLED
 }
