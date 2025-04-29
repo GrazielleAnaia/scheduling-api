@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Document("task")
 @Builder
 
-public class Task {
+public class TaskEntity {
 
     @Id
     private String id;

@@ -1,5 +1,6 @@
 package com.grazielleanaia.scheduling_api.business.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grazielleanaia.scheduling_api.infrastructure.enums.NotificationStatusEnum;
 import lombok.*;
 
@@ -13,6 +14,8 @@ import java.time.LocalDateTime;
 
 public class TaskDTO {
 
+    private String id;
+
     private String customerEmail;
 
     private String taskName;
@@ -21,6 +24,7 @@ public class TaskDTO {
 
     private LocalDateTime creationDate;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm:ss")
     private LocalDateTime eventDate;
 
     private LocalDateTime changeDate;
