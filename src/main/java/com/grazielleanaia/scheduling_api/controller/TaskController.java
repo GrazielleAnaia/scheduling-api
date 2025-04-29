@@ -2,6 +2,7 @@ package com.grazielleanaia.scheduling_api.controller;
 
 import com.grazielleanaia.scheduling_api.business.TaskService;
 import com.grazielleanaia.scheduling_api.business.dto.TaskDTO;
+import com.grazielleanaia.scheduling_api.infrastructure.enums.NotificationStatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +43,17 @@ public class TaskController {
     public ResponseEntity<Void> deleteTaskById(@RequestParam("id") String id) {
         taskService.deleteTaskById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<TaskDTO> updateTasks(@RequestParam("id") String id,
+                                               @RequestBody TaskDTO taskDTO) {
+        return ResponseEntity.ok(taskService.updateTask(taskDTO, id));
+    }
+
+    @PatchMapping
+    public ResponseEntity<TaskDTO> changeNotificationStatus(@RequestParam("id") String id,
+                                                            @RequestParam("status") NotificationStatusEnum status) {
+        return ResponseEntity.ok(taskService.changeNotificationStatus(id, status));
     }
 }
