@@ -8,7 +8,6 @@ import com.grazielleanaia.scheduling_api.infrastructure.enums.NotificationStatus
 import com.grazielleanaia.scheduling_api.infrastructure.exception.ResourceNotFoundException;
 import com.grazielleanaia.scheduling_api.infrastructure.repository.TaskRepository;
 import com.grazielleanaia.scheduling_api.infrastructure.security.JwtUtil;
-import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +48,7 @@ public class TaskService {
     }
 
     public List<TaskDTO> findTaskByPeriod(LocalDateTime initialDate, LocalDateTime finalDate) {
-        List<TaskEntity> entityList = taskRepository.findByEventDateBetween(initialDate, finalDate);
+        List<TaskEntity> entityList = taskRepository.findByEventDateBetweenAndNotificationStatusEnum(initialDate, finalDate, NotificationStatusEnum.PENDENT);
         return taskConverter.toListTaskDTO(entityList);
     }
 
