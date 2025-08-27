@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id "org.sonarqube" version "4.4.1.3373"
 }
 
 group = 'com.grazielleanaia'
@@ -33,6 +34,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
+	// https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+	implementation("jakarta.validation:jakarta.validation-api:3.1.1")
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
@@ -56,4 +61,19 @@ dependencyManagement {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+
+sonarqube {
+
+	properties {
+
+		property "sonar.projectKey", "scheduling-api"
+
+		property "sonar.host.url", "http://localhost:9000"
+
+		property "sonar.login", "sqa_671cf81c1cf2012fdc8f434bae281e051d65fdd9"
+
+	}
+
 }
