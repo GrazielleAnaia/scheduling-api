@@ -1,9 +1,16 @@
-FROM openjdk:17-jdk-alpine
+FROM gradle:8.7-jdk17-alpine AS build
 
 WORKDIR /app
 
-COPY build/libs/scheduling-api-0.0.1-SNAPSHOT.jar /app/scheduling-api.jar
+COPY . .
 
-EXPOSE 8181
+RUN gradle build --no-daemon
 
+
+FROM amazoncorretto:17-alpine3.19-jdk
+
+WORKDIR /app
+
+COPY --from=build /app/build/libs/*.jar /app/scheduling-api.jar
+EXPOSE 8080
 CMD ["java", "-jar", "/app/scheduling-api.jar"]
